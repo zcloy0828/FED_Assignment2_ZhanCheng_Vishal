@@ -67,7 +67,7 @@ registerForm.addEventListener("submit", async (e) => {
 */
     // Redirect after signup
     setTimeout(() => {
-      window.location.href = "home.html";
+      window.location.href = "product.html";
     }, 2000);  // 2-second delay to show message
   } catch (error) {
     showMessage("❌ " + error.message, false);
@@ -89,7 +89,7 @@ loginForm.addEventListener("submit", async (e) => {
 
     // Redirect after login
     setTimeout(() => {
-      window.location.href = "home.html"; // Redirect after login
+      window.location.href = "product.html"; // Redirect after login
     }, 2000);
   } catch (error) {
     showMessage("❌ " + error.message, false);
