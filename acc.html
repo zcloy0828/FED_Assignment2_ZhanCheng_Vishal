@@ -3,75 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seamless Login & Register</title>
+    <title>Login & Register - MockSell</title>
     <link rel="stylesheet" href="acc.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <script type="module" src="acc.js"> defer</script>
+    <script type="module" src="acc.js" defer></script>
 </head>
 <body>
-
-    <div class="header">
-    <div class="container">
-        <div class="navbar">
+    <!-- Navbar (Matches Your Existing Style) -->
+    <div class="navbar">
+        <div class="container">
             <div class="logo">
-                <img src="logo.png" width ="125px" alt="logo">
+                <a href="index.html"><img src="logo.png" width="125px" alt="MockSell Logo"></a>
             </div>
             <nav>
                 <ul>
-                    <li><a href="home.html">Home</a></li>
-                    <li><a href="#">Handphones</a></li>
-                    <li><a href="#">Laptops</a></li>
-                    <li><a href="#">Accessories</a></li>
-                    <li><a href="#"></a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="listing.html">Listings</a></li>
+                    <li><a href="account.html" class="active">Login/Register</a></li>
                 </ul>
             </nav>
-            <img src="cart.png" width="30px" height="30px" alt="cart">
         </div>
-        <div class="row">
-            <div class="col-2">
-                <h1>Give your workout a new style!</h1>
-                <p> Succwess isnt always about winning. its about believing in yourself. hard work gain success</p>
-                <a href="" class="btn">Explore Now &#8594;</a>
+    </div>
+    
+    <!-- Authentication Section -->
+    <div class="account-page">
+        <div class="form-container">
+            <div class="form-btn">
+                <span id="login-btn" class="active">Login</span>
+                <span id="register-btn">Register</span>
             </div>
-            <div class="col-2">
-                <img src="image.png" alt="image">
-
+            <div class="form-wrapper">
+                <form id="login-form">
+                    <label for="email2">Email</label>
+                    <input type="text" placeholder="Enter your email" id="email2" required>
+                    
+                    <label for="password2">Password</label>
+                    <input type="password" placeholder="Enter your password" id="password2" required>
+                    
+                    <button type="submit" class="btn">Log In</button>
+                    <a href="#">Forgot Password?</a>
+                </form>
+                
+                <form id="register-form">
+                    <label for="email">Email</label>
+                    <input type="text" placeholder="Enter your email" id="email" required>
+                    
+                    <label for="password">Password</label>
+                    <input type="password" placeholder="Enter your password" id="password" required>
+                    
+                    <button id="register" type="submit" class="btn">Register</button>
+                </form>
             </div>
-
         </div>
-
     </div>
-</div>
-
-  <div class="account-page">
-    <div class="form-container">
-      <div class="form-btn">
-        <span id="login-btn" class="active">Login</span>
-        <span id="register-btn">Register</span>
-      </div>
-      <div class="form-wrapper">
-        <form id="login-form">
-          <label for="username">Username</label>
-          <input type="text" placeholder="Email or Phone" id="email2" required>
-
-          <label for="username">Password</label>
-          <input type="password" placeholder="Password" id="password2" required>
-          <button type="submit" class="btn">Log In</button>
-          <a href="#">Forgot Password?</a>
-        </form>
-        <form id="register-form">
-          <label for="username">Username</label>
-          <input type="text" placeholder="Email or Phone" id="email" required>
-
-          <label for="username">Password</label>
-          <input type="password" placeholder="Password" id="password" required>
-          
-          <button id="register" type="submit" class="btn">Register</button>
-        </form>
-      </div>
-    </div>
-  </div>
-
-
 </body>
 </html>

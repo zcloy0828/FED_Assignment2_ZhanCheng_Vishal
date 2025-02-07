@@ -36,48 +36,44 @@ body{
       }
       
 }
-.navbar{
+.navbar {
     display: flex;
     align-items: center;
-    padding: 20px;
+    justify-content: space-between;
+    padding: 20px 50px;
 }
 
-nav{
-    flex: 1;
-    text-align: right;
+nav ul {
+    display: flex;
+    justify-content: flex-end; /* Align links to the right */
+    flex: 1; /* Push links to the far right */
+    list-style: none;
+    gap: 25px; /* Add spacing between the links */
 }
 
-nav ul{
-    display: inline-block;
-    list-style-type: none;
+nav ul li {
+    display: inline;
 }
 
-nav ul li{
-    display: inline-block;
-    margin-right: 20px;
-}
-
-a{
+nav ul li a {
     text-decoration: none;
-    color: #555;
-
+    font-size: 20px;
+    color: #333;
+    font-weight: 500;
 }
 
-p{
-    color: #555;
-}
 .container{
     max-width: 1300px; 
     margin: auto;
-    padding-left: 25px;
-    padding-right: 25px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .row{
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .col-2{
@@ -107,7 +103,7 @@ p{
 }
 
 .header{
-    background: radial-gradient(#fff,#ffd6d6);
+    background: radial-gradient(#fff,#d6e0f0);
 }
 
 .header .row{
@@ -131,20 +127,22 @@ p{
 .small-container{
     max-width: 1080px;
     margin: auto;
-    padding-left: 25px;
-    padding-right: 25px;
+    padding: 25px;
+
 }
 
-.col-4{
-    flex-basis: 25%;
-    padding: 10px;
-    min-width: 200px;
-    margin-bottom: 50px;
+.col-4 {
+    flex-basis: 23%;
+    padding: 20px;
+    min-width: 250px;
+    text-align: center;
     transition: transform 0.5s;
 }
 
-.col-4 img{
+.col-4 img {
     width: 100%;
+    margin-bottom: 20px;
+    border-radius: 10px;
 }
 
 .title{
@@ -189,7 +187,7 @@ h4{
 
 /*------offer-----*/
 .offer{
-    background: radial-gradient(#fff,#ffd6d6);
+    background: radial-gradient(#fff,#d6e0f0);
     margin-top: 80px;
     padding: 30px 0;
 }
@@ -205,20 +203,20 @@ small{
 /*--testimonial--*/
 
 .testimonial{
-    padding-top: 100px;
+    padding-top: 50px 0;
 }
 
-.testimonial col-3{
+.testimonial .col-3 {
+    flex-basis: 30%; /* Adjusted to maintain alignment */
     text-align: center;
-    padding: 40px 20px;
-    box-shadow: 0 0 20px 0px rgba(0,0,0,0.1);
-    cursor: pointer;
-    transition: transform 0.5s;
+    padding: 50px 25px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
 }
 
 .testimonial col-3 img{
-    width: 50px;
-    margin-top: 20px;
+    width: 100px;
+    margin-top: 25px;
     border-radius: 50%;
 }
 
