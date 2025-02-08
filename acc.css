@@ -110,7 +110,7 @@ p{
 }
 
 .header{
-  background: radial-gradient(#fff,#ffd6d6);
+  background: radial-gradient(#fff,#c8d8e4);
 }
 
 .header .row{
@@ -123,7 +123,7 @@ p{
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: radial-gradient(#e0f7ff, #e89494); /* Light blue gradient */
+  background: radial-gradient(#e0f7ff, #ffffff); /* Light blue gradient */
 }
 
 /* Blurred Form Container */
