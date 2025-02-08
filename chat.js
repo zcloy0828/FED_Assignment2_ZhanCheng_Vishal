@@ -1,194 +1,160 @@
-// Import Firebase modules
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { 
-    getFirestore, collection, doc, setDoc, getDoc, getDocs, onSnapshot, addDoc, query, orderBy 
-} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { Timestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+const chats = [
+    {
+        id: 1,
+        name: 'Moe Lee',
+        product: 'Iphone Charger Cable Lightning to USB',
+        price: '$15',
+        avatar: 'ML'
+    },
+    {
+        id: 2,
+        name: 'Mike Oxlong',
+        product: 'Beats Studio Buds - True Wireless',
+        avatar: 'MO'
+    },
+    {
+        id: 3,
+        name: 'Hugh Jass',
+        product: 'Acer EK271 G EK1 Series 27" FH',
+        avatar: 'HJ'
+    },
+    {
+        id: 4,
+        name: 'Ben Dover',
+        product: 'Apple - Iphone 13 - 256 GB - Pink',
+        avatar: 'BD'
+    }
+];
 
-// Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyBuPvu6ukKh9laZgqIMPdwuWUV56zoSD2E",
-    authDomain: "chat-function-e2d2a.firebaseapp.com",
-    projectId: "chat-function-e2d2a",
-    storageBucket: "chat-function-e2d2a.firebasestorage.app",
-    messagingSenderId: "669713810079",
-    appId: "1:669713810079:web:92893089b4bae6cc3098aa"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const auth = getAuth(app);
-
-// Predefined bot responses
-const botResponses = {
-    "TechBot": [
-        "Hello! Need help with a tech issue?",
-        "Our latest gadgets are now available!",
-        "I can assist with troubleshooting. What's your issue?"
-    ],
-    "DealBot": [
-        "Looking for the best deals? I'm here to help!",
-        "Check out our latest discounts on electronics!",
-        "Want a special offer? Just ask!"
-    ],
-    "SupportBot": [
-        "How can I assist you today?",
-        "For order issues, please provide your order number.",
-        "We are here to help! Let us know your concern."
-    ]
-};
-
-// Function to get the current user's email
-function getCurrentUserEmail() {
-    return auth.currentUser ? auth.currentUser.email : null;
-}
-
-// Function to initialize bot chats for the user
-async function initializeBotChats(userEmail) {
-    const bots = ["TechBot", "DealBot", "SupportBot"];
-    for (const bot of bots) {
-        const chatId = generateChatId(userEmail, bot);
-        const chatRef = doc(db, "chats", chatId);
-        const chatDoc = await getDoc(chatRef);
-
-        if (!chatDoc.exists()) {
-            // Create a new chat with the bot
-            await setDoc(chatRef, { 
-                users: [userEmail, bot],
-                lastMessage: "Hello! I am " + bot + ". How can I assist you?"
-            });
-
-            // Add an initial bot message
-            const messagesRef = collection(chatRef, "messages");
-            await addDoc(messagesRef, {
-                sender: bot,
-                text: "Hello! I am " + bot + ". How can I assist you?",
-                timestamp: Timestamp.now()
-            });
+const sellerPersonas = {
+    'Moe Lee': {
+        personality: 'professional',
+        product: 'Iphone Charger Cable Lightning to USB',
+        price: 15,
+        responses: {
+            greeting: ["Hi there! Thanks for your interest in the iPhone cable.", "Hello! Looking at the iPhone charging cable?"],
+            negotiation: ["I can offer it for $12, that's my best price.", "Given the quality, I think $13 would be fair.", "What price did you have in mind?"],
+            confirmation: ["Great! When would you like to meet up?", "Perfect! I can meet today or tomorrow."],
+            rejection: ["No worries! Let me know if you change your mind.", "Thanks for letting me know. Have a great day!"],
+            generic: ["I appreciate your message. Could you please clarify what you're looking for?", "Let me know if you have any questions about the cable."]
+        }
+    },
+    'Mike Oxlong': {
+        personality: 'casual',
+        product: 'Beats Studio Buds',
+        price: 150,
+        responses: {
+            greeting: ["Hey! These Beats are still available!", "What's up! Interested in the Beats?"],
+            negotiation: ["I can do $130 if you pick up today", "Make me an offer, I'm flexible"],
+            confirmation: ["Sweet! When do you wanna meet?", "Awesome! I'm free after 5pm"],
+            rejection: ["All good mate, take care!", "No worries! Hit me up if you change your mind"],
+            generic: ["Let me know what you're thinking", "What's on your mind about the Beats?"]
+        }
+    },
+    'Hugh Jass': {
+        personality: 'technical',
+        product: 'Acer Monitor',
+        price: 250,
+        responses: {
+            greeting: ["Hello! This is a 27-inch 1080p monitor with 144Hz refresh rate.", "Hi! Interested in the Acer monitor? It's in perfect condition."],
+            negotiation: ["Given the specs and condition, I can do $220 minimum.", "What's your offer? Keep in mind it's still under warranty."],
+            confirmation: ["Excellent choice! Would you like to test it before purchasing?", "Great! I can demonstrate all features upon meetup."],
+            rejection: ["Understood! If you're looking for other monitor specs, let me know.", "No problem! Let me know if you want to know more about its features."],
+            generic: ["Feel free to ask about any technical specifications.", "I can provide detailed information about refresh rates, response time, etc."]
         }
     }
+};
+
+let currentSeller = null;
+
+function getSellerResponse(seller, messageType, userMessage) {
+    const persona = sellerPersonas[seller];
+    if (!persona) return "Hello! How can I help you?";
+
+    const msg = userMessage.toLowerCase();
+    let responseType = 'generic';
+    
+    if (msg.includes('hi') || msg.includes('hello') || msg.includes('hey')) {
+        responseType = 'greeting';
+    } else if (msg.includes('price') || msg.includes('offer') || msg.includes('cheaper') || msg.includes('discount')) {
+        responseType = 'negotiation';
+    } else if (msg.includes('okay') || msg.includes('sure') || msg.includes('yes') || msg.includes('deal')) {
+        responseType = 'confirmation';
+    } else if (msg.includes('no') || msg.includes('sorry') || msg.includes('cant') || msg.includes("can't")) {
+        responseType = 'rejection';
+    }
+
+    const responses = persona.responses[responseType];
+    return responses[Math.floor(Math.random() * responses.length)];
 }
 
-// Function to fetch and display chats for the user
-async function fetchUserChats(userEmail) {
-    const chatsList = document.getElementById('chatsList');
-    chatsList.innerHTML = '';
-
-    const chatsQuery = query(collection(db, "chats"));
-    const querySnapshot = await getDocs(chatsQuery);
-
-    querySnapshot.forEach((doc) => {
-        const chatData = doc.data();
-        if (chatData.users.includes(userEmail)) {
-            const otherUser = chatData.users.find(u => u !== userEmail);
-            const chatItem = document.createElement('div');
-            chatItem.className = 'chat-item';
-            chatItem.innerHTML = `
-                <div class="chat-avatar"></div>
-                <div class="chat-info">
-                    <div class="chat-name">${otherUser}</div>
-                    <div class="chat-preview">${chatData.lastMessage || "No messages yet"}</div>
-                </div>
-            `;
-            chatItem.onclick = () => openChat(doc.id, otherUser);
-            chatsList.appendChild(chatItem);
-        }
-    });
+function createChatItem(chat) {
+    const div = document.createElement('div');
+    div.className = 'chat-item';
+    div.innerHTML = `
+        <div class="avatar">${chat.avatar}</div>
+        <div style="flex: 1">
+            <div style="font-weight: bold">${chat.name}</div>
+            <div style="font-size: 14px">${chat.product}</div>
+        </div>
+    `;
+    div.onclick = () => loadChat(chat);
+    return div;
 }
 
+function loadChat(chat) {
+    currentSeller = chat.name;
+    
+    document.getElementById('chatHeader').style.display = 'flex';
+    document.getElementById('chatInput').style.display = 'block';
+    
+    document.getElementById('currentChat').textContent = chat.name;
+    document.getElementById('chatAvatar').textContent = chat.avatar;
+    
+    const messagesDiv = document.getElementById('chatMessages');
+    messagesDiv.innerHTML = '';
+    messagesDiv.style.justifyContent = 'flex-start';
+}
 
-// Function to open a chat and display messages
-async function openChat(chatId, botName) {
-    const messagesContainer = document.getElementById('chatMessages');
-    messagesContainer.innerHTML = '';
+const chatList = document.getElementById('chatList');
+chats.forEach(chat => {
+    chatList.appendChild(createChatItem(chat));
+});
 
-    const chatHeader = document.getElementById('chatHeader');
-    const chatInput = document.getElementById('chatInput');
-    const emptyState = document.getElementById('emptyState');
-    const sellerName = document.getElementById('currentChatName');
+document.getElementById('messageInput').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter' && this.value.trim() && currentSeller) {
+        const userMessage = this.value;
+        const message = {
+            type: 'sent',
+            content: userMessage,
+            timestamp: new Date().toLocaleString()
+        };
+        
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${message.type}`;
+        messageDiv.innerHTML = `
+            <div class="message-content">${message.content}</div>
+            <div class="timestamp">${message.timestamp}</div>
+        `;
+        
+        document.getElementById('chatMessages').appendChild(messageDiv);
+        this.value = '';
 
-    sellerName.innerText = botName;
-    chatHeader.classList.remove('hidden');
-    chatInput.classList.remove('hidden');
-    emptyState.classList.add('hidden');
-    messagesContainer.classList.remove('hidden');
-
-    const messagesRef = collection(db, "chats", chatId, "messages");
-    const messagesQuery = query(messagesRef, orderBy("timestamp"));
-
-    onSnapshot(messagesQuery, (snapshot) => {
-        messagesContainer.innerHTML = '';
-        snapshot.forEach(doc => {
-            const msg = doc.data();
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${msg.sender === getCurrentUserEmail() ? 'sent' : 'received'}`;
-            messageDiv.innerHTML = `
-                <div class="message-time">${msg.timestamp.toDate().toLocaleTimeString()}</div>
-                <div class="message-content">${msg.text}</div>
-            `;
-            messagesContainer.appendChild(messageDiv);
-        });
-
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    });
-
-    // Set event listener for sending messages
-    document.getElementById('messageInput').onkeypress = async function(e) {
-        if (e.key === 'Enter' && this.value.trim()) {
-            const messageText = this.value.trim();
-            await sendMessage(chatId, messageText);
-            this.value = '';
+        setTimeout(() => {
+            const botResponse = {
+                type: 'received',
+                content: getSellerResponse(currentSeller, 'generic', userMessage),
+                timestamp: new Date().toLocaleString()
+            };
             
-            // Simulate bot reply after a delay
-            setTimeout(() => sendBotReply(chatId, botName), 1000);
-        }
-    };
-}
-
-// Function to send a message
-async function sendMessage(chatId, messageContent) {
-    const messagesRef = collection(db, "chats", chatId, "messages");
-
-    await addDoc(messagesRef, {
-        sender: getCurrentUserEmail(),
-        text: messageContent,
-        timestamp: Timestamp.now()
-    });
-
-    // Update last message in chat document
-    const chatRef = doc(db, "chats", chatId);
-    await setDoc(chatRef, { lastMessage: messageContent }, { merge: true });
-}
-
-// Function to send a bot reply
-async function sendBotReply(chatId, botName) {
-    if (botResponses[botName]) {
-        const botMessage = botResponses[botName][Math.floor(Math.random() * botResponses[botName].length)];
-        const messagesRef = collection(db, "chats", chatId, "messages");
-
-        await addDoc(messagesRef, {
-            sender: botName,
-            text: botMessage,
-            timestamp: Timestamp.now()
-        });
-
-        // Update last message in chat document
-        const chatRef = doc(db, "chats", chatId);
-        await setDoc(chatRef, { lastMessage: botMessage }, { merge: true });
-    }
-}
-
-// Function to generate a unique chat ID
-function generateChatId(user1, user2) {
-    return [user1, user2].sort().join("_");
-}
-
-// Initialize chat interface when user is logged in
-onAuthStateChanged(auth, async (user) => {
-    if (user) {
-        await initializeBotChats(user.email);
-        fetchUserChats(user.email);
+            const botMessageDiv = document.createElement('div');
+            botMessageDiv.className = `message ${botResponse.type}`;
+            botMessageDiv.innerHTML = `
+                <div class="message-content">${botResponse.content}</div>
+                <div class="timestamp">${botResponse.timestamp}</div>
+            `;
+            
+            document.getElementById('chatMessages').appendChild(botMessageDiv);
+        }, 1000);
     }
 });

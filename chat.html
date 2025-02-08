@@ -37,81 +37,33 @@
     </div>
 
     <!-- Chat Section -->
-    <div class="chat-container">
-        <div class="chats-sidebar">
-            <div class="chats-header">
-                <span class="chats-title">CHAT BOTS</span>
+    <div class="container2">
+        <div class="sidebar">
+            <h2>CHATS</h2>
+            <div class="chat-list" id="chatList">
             </div>
-            <div id="chatBotsList">
-                <div class="chat-item bot" onclick="openChatBot('Tech Bot')">
-                    <div class="chat-avatar bot-avatar"></div>
-                    <div class="chat-info">
-                        <div class="chat-name">Tech Bot</div>
-                        <div class="chat-preview">Your AI assistant</div>
-                    </div>
-                </div>
-                <div class="chat-item bot" onclick="openChatBot('Gadget Guru')">
-                    <div class="chat-avatar bot-avatar"></div>
-                    <div class="chat-info">
-                        <div class="chat-name">Gadget Guru</div>
-                        <div class="chat-preview">Ask about latest gadgets</div>
-                    </div>
-                </div>
-                <div class="chat-item bot" onclick="openChatBot('Shop Assist')">
-                    <div class="chat-avatar bot-avatar"></div>
-                    <div class="chat-info">
-                        <div class="chat-name">Shop Assist</div>
-                        <div class="chat-preview">Get shopping tips</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="chats-header">
-                <span class="chats-title">YOUR CHATS</span>
-            </div>
-            <div id="chatsList"></div>
         </div>
-
-        <div class="chat-window">
-            <div class="chat-header hidden" id="chatHeader">
-                <div class="seller-info">
-                    <div class="seller-name" id="currentChatName"></div>
-                    <div class="seller-status" id="sellerStatus"></div>
+        
+        <div class="chat-main">
+            <div class="chat-header" id="chatHeader" style="display: none;">
+                <div class="avatar" id="chatAvatar"></div>
+                <div>
+                    <h3 id="currentChat">Select a chat</h3>
+                    <small class="status">Active 69 hours ago</small>
                 </div>
             </div>
-            <div id="emptyState" class="empty-chat-message">
-                Click On A Chat!
+            
+            <div class="chat-messages" id="chatMessages">
+                <div class="empty-state">Click On A Chat!</div>
             </div>
-            <div id="chatMessages" class="chat-messages hidden"></div>
-            <div id="chatInput" class="chat-input hidden">
-                <input type="text" id="messageInput" placeholder="Type here...">
+            
+            <div class="chat-input" id="chatInput" style="display: none;">
+                <input type="text" placeholder="Type here..." id="messageInput">
             </div>
         </div>
     </div>
-
     <script
      src="chat.js">
-    async function openChatBot(botName) {
-        const messagesContainer = document.getElementById('chatMessages');
-        messagesContainer.innerHTML = '';
-
-        const chatHeader = document.getElementById('chatHeader');
-        const chatInput = document.getElementById('chatInput');
-        const emptyState = document.getElementById('emptyState');
-        const sellerName = document.getElementById('currentChatName');
-
-        sellerName.innerText = botName;
-        chatHeader.classList.remove('hidden');
-        chatInput.classList.remove('hidden');
-        emptyState.classList.add('hidden');
-        messagesContainer.classList.remove('hidden');
-
-        // Dummy bot response
-        const botMessage = document.createElement('div');
-        botMessage.className = "message received";
-        botMessage.innerHTML = `<div class="message-content">Hello! I'm ${botName}. How can I help?</div>`;
-        messagesContainer.appendChild(botMessage);
-}
 
     </script>
 </body>
