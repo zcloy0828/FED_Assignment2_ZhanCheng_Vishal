@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="profile_page.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section (Same as Homepage) -->
+    <div class="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="mockshell_logo_updated.png" alt="Mocksell Logo" width="150px">
+                    </a>
+                </div>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="product_handphone.html">Handphones</a></li>
+                        <li><a href="product_laptop.html">Laptops</a></li>
+                        <li><a href="product_accessories.html">Accessories</a></li>
+                    </ul>
+                </nav>
+                <div class="user-menu">
+                    <ul class="icons">
+                        <li><a href="profile.html"><img src="account_circle.png" alt="Profile" width="24px"></a></li>
+                        <li><a href="#"><img src="Heart.png" alt="Like" width="24px"></a></li>
+                        <li><a href="#"><img src="notifications.png" alt="Notification" width="24px"></a></li>
+                        <li><a href="#"><img src="Shopping cart.png" alt="Cart" width="24px"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Page Content -->
+    <div class="container">
+        <h1>Profile Management</h1>
+        <div class="profile-sidebar">
+            <ul>
+                <li><a href="#profile-management">Update Profile Info</a></li>
+                <li><a href="#follow-list">Followed Accounts</a></li>
+                <li><a href="logout.html">Logout</a></li>
+            </ul>
+        </div>
+        <div class="profile-content">
+            <section id="profile-management">
+                <h2>Update Profile Info</h2>
+                <form>
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter your username">
+                    
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email">
+
+                    <label for="password">New Password</label>
+                    <input type="password" id="password" placeholder="Enter new password">
+
+                    <button type="submit">Update</button>
+                </form>
+            </section>
+            <section id="follow-list">
+                <h2>Followed Accounts</h2>
+                <ul>
+                    <li>Account 1</li>
+                    <li>Account 2</li>
+                    <li>Account 3</li>
+                </ul>
+            </section>
+        </div>
+    </div>
+</body>
+</html>
