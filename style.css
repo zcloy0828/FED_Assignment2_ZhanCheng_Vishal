@@ -98,6 +98,7 @@ nav ul li a {
     align-items: center;
     flex-wrap: wrap;
     justify-content: space-between;
+    margin-top: 30px;
 }
 
 
@@ -557,5 +558,42 @@ input:focus{
 }
 
 
+/*--user profile shown above product*/
+.seller-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.seller-profile {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.seller-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.post-time {
+    font-size: 12px;
+    color: gray;
+    margin: 0;
+}
+
+/* Remove underline and change color for product links */
+.col-4 h4 a {
+    text-decoration: none; /* Removes underline */
+    color: #333; /* Sets text color to match your design */
+    font-weight: bold; /* Optional: Makes the text bold */
+}
+
+.col-4 h4 a:hover {
+    color: #ff523b; /* Changes color on hover for better interaction */
+}
 
 
