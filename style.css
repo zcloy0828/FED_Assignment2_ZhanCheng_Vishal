@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-size: 18px;
 }
 
 body{
@@ -60,7 +61,7 @@ nav ul li a {
     text-decoration: none;
     font-size: 20px;
     color: #333;
-    font-weight: 500;
+    font-weight: bold;
 }
 
 /* User Menu (Icons) */
@@ -101,23 +102,26 @@ nav ul li a {
 
 
 
-/*search bar*/
-/* Search Bar Styling */
-.search-bar {
+/* New Search Bar Styling */
+.search-section {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px 0;
+    height: 150px; /* Adjust height to place it in the middle */
+    margin-top: 10px; /* Space between navbar and search bar */
 }
 
-.search-bar form {
-    display: flex;
-    align-items: center;
-    width: 60%; /* Adjust width as needed */
+.search-container {
+    width: 60%;
     background: #f0f0f0;
     border-radius: 30px;
     padding: 10px 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.search-container form {
+    display: flex;
+    align-items: center;
 }
 
 .search-input {
@@ -125,7 +129,7 @@ nav ul li a {
     border: none;
     outline: none;
     font-size: 16px;
-    padding: 8px;
+    padding: 10px;
     background: transparent;
 }
 
@@ -139,10 +143,10 @@ nav ul li a {
     background: #ff523b;
     color: white;
     font-size: 16px;
-    padding: 8px 20px;
+    padding: 10px 20px;
     border-radius: 20px;
     cursor: pointer;
-
+    transition: background 0.3s;
 }
 
 .search-button:hover {
@@ -153,6 +157,7 @@ nav ul li a {
 .col-2{
     flex-basis: 50%;
     min-width: 300px;
+    padding-left: 25px;
 }
 .col-2 img{
     max-width: 100%;
@@ -161,14 +166,15 @@ nav ul li a {
 }
 
 .col-2 h1{
-    font-size: 50px;
+    font-size: 60px;
     line-height: 60px;
     margin: 25px 0;
+
 }
 
 .btn{
     display: inline-block;
-    background: #ff523b;
+    background: #aa2baa;
     color: #fff;
     padding: 8px 30px;
     margin: 30px 0;
@@ -177,7 +183,7 @@ nav ul li a {
 }
 
 .header{
-    background: radial-gradient(#fff,#d6e0f0);
+    background: radial-gradient(#fff,#c8d8e4);
 }
 
 .header .row{
@@ -261,7 +267,7 @@ h4{
 
 /*------offer-----*/
 .offer{
-    background: radial-gradient(#fff,#d6e0f0);
+    background: radial-gradient(#fff,#c8d8e4);
     margin-top: 80px;
     padding: 30px 0;
 }
