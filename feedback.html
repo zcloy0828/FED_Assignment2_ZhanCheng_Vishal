@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Feedback and Support</title>
+    <!-- Include shared styles -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Include feedback-specific styles -->
+    <link rel="stylesheet" href="feedback.css">
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+    <script type="module" src="feedback.js" defer></script>
+</head>
+<body>
+    <!-- Include shared navigation bar -->
+    <div class="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="mockshell_logo_updated.png" alt="Mocksell Logo" width="150px">
+                    </a>
+                </div>                
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="product_handphone.html">Handphones</a></li>
+                        <li><a href="product_handphone.html">Laptops</a></li>
+                        <li><a href="product_handphone.html">Accessories</a></li>
+                        <li><a href="feedback.html">Feedback</a></li>
+                    </ul>
+                </nav>
+                <div class="user-menu">
+                    <ul class="icons">
+                        <li><a href="#"><img src="account_circle.png" alt="User" width="24px"></a></li>
+                        <li><a href="#"><img src="Heart.png" alt="Like" width="24px"></a></li>
+                        <li><a href="#"><img src="notifications.png" alt="Notification" width="24px"></a></li>
+                        <li><a href="chat.html"><img src="Message circle.png" alt="Chat" width="24px"></a></li>
+                        <li><a href="#"><img src="Shopping cart.png" alt="Cart" width="24px"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="small-container">
+        <h2 class="title">Feedback and Support</h2>
+        <form id="feedbackForm">
+            <div class="form-group">
+                <label for="feedbackCategory">Category</label>
+                <select id="feedbackCategory" name="category" required>
+                    <option value="">Select a category</option>
+                    <option value="Bug Report">Bug Report</option>
+                    <option value="Feature Request">Feature Request</option>
+                    <option value="General Feedback">General Feedback</option>
+                    <option value="Question">Problem with Product</option>
+                    <option value="Complaint">Complaint</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="feedbackMessage">Message</label>
+                <textarea id="feedbackMessage" name="message" rows="5" placeholder="Describe the issue or feedback here..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn">Submit Feedback</button>
+        </form>
+    </div>
+</body>
+</html>
