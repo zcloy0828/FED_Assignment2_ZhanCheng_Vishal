@@ -1,6 +1,6 @@
 # FED_Assignment2_ZhanCheng_Vishal
 
-# FED Assignment 2 - Electronics Reselling Website
+# FED Assignment 2 - MokeSell Electronics Website
 
 ## Project Overview
 This project is a front-end web development assignment focused on designing and developing a responsive website for reselling electronics. The goal of this website is to make the buying and selling process **easy and simple** for users, unlike other selling and reselling websites that have too many buttons, making navigation confusing. This website ensures a **clean, minimal, and user-friendly experience**, allowing users to browse various electronic products, view details, and navigate different product categories with ease.
