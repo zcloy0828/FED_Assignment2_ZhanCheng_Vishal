@@ -47,41 +47,22 @@
     <div class="small-container single-product">
         <div class="row">
             <div class="col-2">
-                <img src="images/product-9.jpg" width="100%" id="productImg">
-                <div class="small-img-row">
-                    <div class="small-img-col">
-                        <img src="images/product-9.jpg" width="100%" class="small-img" onclick="changeimg('images/product-9.jpg')">
-                    </div>
-                    <div class="small-img-col">
-                        <img src="images/product-10.jpg" width="100%" class="small-img" onclick="changeimg('images/product-10.jpg')">
-                    </div>
-                    <div class="small-img-col">
-                        <img src="images/product-11.jpg" width="100%" class="small-img" onclick="changeimg('images/product-11.jpg')">
-                    </div>
-                    <div class="small-img-col">
-                        <img src="images/product-12.jpg" width="100%" class="small-img" onclick="changeimg('images/product-12.jpg')">
-                    </div>
-                </div>
-
-
-
+                <img id="productImg" src="" width="100%">
             </div>
             <div class="col-2">
-                <p>Home / T-Shirt</p>
-                <h1>Red Printed T-Shirt by HRX</h1>
-                <h4>$50.00</h4>
+                <h1 id="product-title">Product Name</h1>
+                <h4 id="product-price">$0.00</h4>
                 <select>
                     <option>Select color</option>
-                    <option>black</option>
-                    <option>cyan</option>
-                    <option>yelloe</option>
-                    <option>white</option>
-                    <option>pink</option>
+                    <option>Black</option>
+                    <option>Cyan</option>
+                    <option>Yellow</option>
+                    <option>White</option>
+                    <option>Pink</option>
                 </select>
                 <input type="number" value="1">
                 <a href="" class="btn">Add to Cart</a>
                 <h3>Product Details <i class="fa fa-indent"></i></h3>
-                <br>
                 <p>Give your phone a new style</p>
             </div>
         </div>
@@ -248,6 +229,33 @@
             ProductImg.src = SmallImg[3].src;
         }
     </script>
+
+    <script>
+        // Function to get query parameters from the URL
+        function getQueryParams() {
+            let params = new URLSearchParams(window.location.search);
+            return {
+                name: params.get("name"),
+                price: params.get("price"),
+                image: params.get("image")
+            };
+        }
+
+        // Load product details dynamically
+        function loadProductDetails() {
+            let product = getQueryParams();
+
+            if (product.name && product.price && product.image) {
+                document.getElementById("product-title").innerText = product.name;
+                document.getElementById("product-price").innerText = "$" + product.price;
+                document.getElementById("productImg").src = product.image;
+            }
+        }
+
+        // Call function when page loads
+        window.onload = loadProductDetails;
+    </script>
+
 
 
 </body>
