@@ -61,35 +61,77 @@ nav ul li a {
   transform: scale(1.2);
 }
 
-.container {
-  max-width: 1300px;
-  margin: auto;
-  padding-left: 10px;
-  padding-right: 10px;
+/* Container for liked items - same as product layout */
+.liked-items-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start; /* Aligns items from left to right */
+  padding: 20px;
 }
 
-.container2 {
-  max-width: 600px;
-  margin: auto;
+/* Each liked product card - same as product card */
+.liked-product-card {
+  flex-basis: 23%;
   padding: 20px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  min-width: 250px;
   text-align: center;
+  transition: transform 0.5s;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-.liked-items {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
+
+.liked-product-card:hover {
+  transform: translate(-5px);
 }
-.liked-items img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 8px;
+
+/* Product image */
+.liked-product-card img {
+  width: 100%;
+  margin-bottom: 20px;
+  border-radius: 10px;
 }
-.message {
+
+/* Product title */
+.liked-product-card h4 {
   font-size: 18px;
-  color: #888;
+  margin: 10px 0;
+  color: #555;
+}
+
+/* Price styling */
+.liked-product-card p {
+  font-size: 16px;
+  font-weight: bold;
+  color: #ff4d4d;
+}
+
+/* Remove button */
+.liked-product-card .remove-listing {
+  background: #ff523b;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+  transition: background 0.3s ease;
+}
+
+.liked-product-card .remove-listing:hover {
+  background: #cc0000;
+}
+
+/* Responsive adjustments for small screens */
+@media only screen and (max-width: 800px) {
+  .liked-product-card {
+      flex-basis: 48%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .liked-product-card {
+      flex-basis: 100%;
+  }
 }
