@@ -31,7 +31,7 @@
                 <div class="user-menu">
                     <ul class="icons">
                         <li><a href="#"><img src="account_circle.png" alt="User" width="24px"></a></li>
-                        <li><a href="#"><img src="Heart.png" alt="Like" width="24px"></a></li>
+                        <li><a href="liked_items.html"><img src="Heart.png" alt="Like" width="24px"></a></li>
                         <li><a href="#"><img src="notifications.png" alt="Notification" width="24px"></a></li>
                         <li><a href="chat.html"><img src="Message circle.png" alt="Chat" width="24px"></a></li>
                         <li><a href="#"><img src="Shopping cart.png" alt="Cart" width="24px"></a></li>
@@ -63,7 +63,7 @@
     </div>
 
     <div class="row">
-        <div class="col-4">
+        <div class="col-4 product-card" data-id="1" data-name="iPhone 14 Blue" data-image="iphone_14_blue.jpg" data-price="1005.00">
             <div class="seller-info">
                 <img src="random_pfp.jpg" alt="Seller Profile" class="seller-profile">
                 <div>
@@ -74,7 +74,7 @@
             <a href="product_details.html">
                 <img src="iphone_14_blue.jpg" alt="product-1">
             </a>
-            <h4><a href="product_detail.html">iPhone 14 Blue</a></h4>
+            <h4><a href="product_details.html">iPhone 14 Blue</a></h4>
             <div class="rating">
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
@@ -85,6 +85,8 @@
             <p>$1005.00</p>
             <button class="save-listing">❤️ Save</button>
         </div>
+                        
+        
         <div class="col-4">
             <div class="seller-info">
                 <img src="random_pfp.jpg" alt="Seller Profile" class="seller-profile">
@@ -473,22 +475,8 @@
     </div>
 
 <!----js for toggle menu-->
-    <script>
-        var MenuItems = document.getElementById("MenuItems");
+    <script src="product_handphone.js"></script>
 
-        MenuItems.style.maxHeight = "0px";
-
-        function menutoggle(){
-            if(MenuItems.style.maxHeight == "0px")
-            {
-                MenuItems.style.maxHeight = "200px";
-            }
-            else
-            {
-                MenuItems.style.maxHeight = "0px";
-            }
-        }
-    </script>
 
 
 </body>

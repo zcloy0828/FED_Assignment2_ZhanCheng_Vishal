@@ -406,6 +406,24 @@
                 MenuItems.style.maxHeight = "0px";
             }
         }
+    
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js"></script>
+    <script>
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBuPvu6ukKh9laZgqIMPdwuWUV56zoSD2E",
+            authDomain: "chat-function-e2d2a.firebaseapp.com",
+            projectId: "chat-function-e2d2a",
+            storageBucket: "chat-function-e2d2a.firebasestorage.app",
+            messagingSenderId: "669713810079",
+            appId: "1:669713810079:web:92893089b4bae6cc3098aa"
+            };
+    
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
     </script>
 
 

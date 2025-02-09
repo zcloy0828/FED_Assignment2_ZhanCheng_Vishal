@@ -1,0 +1,95 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #f5f5f5;
+}
+
+/* Header and Navbar Styles */
+.header {
+  background: radial-gradient(#fff, #d6e0f0);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 50px;
+}
+
+nav ul {
+  display: flex;
+  justify-content: flex-end;
+  flex: 1;
+  list-style: none;
+  gap: 25px;
+}
+
+nav ul li {
+  display: inline;
+}
+
+nav ul li a {
+  text-decoration: none;
+  font-size: 20px;
+  color: #333;
+  font-weight: 500;
+}
+
+.user-menu {
+  display: flex;
+  align-items: center;
+}
+
+.user-menu .icons {
+  display: flex;
+  list-style: none;
+  gap: 15px;
+}
+
+.user-menu .icons li a img {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.user-menu .icons li a img:hover {
+  transform: scale(1.2);
+}
+
+.container {
+  max-width: 1300px;
+  margin: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.container2 {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  text-align: center;
+}
+.liked-items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.liked-items img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+.message {
+  font-size: 18px;
+  color: #888;
+}
