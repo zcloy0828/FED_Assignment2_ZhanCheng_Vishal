@@ -25,17 +25,18 @@
                     <ul class="nav-links">
                         <li><a href="index.html">Home</a></li>
                         <li><a href="product_handphone.html">Handphones</a></li>
-                        <li><a href="product_handphone.html">Laptops</a></li>
-                        <li><a href="product_handphone.html">Accessories</a></li>
+                        <li><a href="product_laptop.html">Laptops</a></li>
+                        <li><a href="product_accessories.html">Accessories</a></li>
+                        <li><a href="feedback.html">Feedback</a></li>
                     </ul>
                 </nav>
                 <div class="user-menu">
                     <ul class="icons">
-                        <li><a href="#"><img src="account_circle.png" alt="User" width="24px"></a></li>
-                        <li><a href="#"><img src="Heart.png" alt="Like" width="24px"></a></li>
+                        <li><a href="profile_page.html"><img src="account_circle.png" alt="User" width="24px"></a></li>
+                        <li><a href="liked_items.html"><img src="Heart.png" alt="Like" width="24px"></a></li>
                         <li><a href="#"><img src="notifications.png" alt="Notification" width="24px"></a></li>
                         <li><a href="chat.html"><img src="Message circle.png" alt="Chat" width="24px"></a></li>
-                        <li><a href="#"><img src="Shopping cart.png" alt="Cart" width="24px"></a></li>
+                        <li><a href="shopping_cart.html"><img src="Shopping cart.png" alt="Cart" width="24px"></a></li>
                     </ul>
                 </div>
             </div>
@@ -61,7 +62,7 @@
                     <option>Pink</option>
                 </select>
                 <input type="number" value="1">
-                <a href="" class="btn">Add to Cart</a>
+                <button id="add-to-cart">Add to Cart</button>
                 <h3>Product Details <i class="fa fa-indent"></i></h3>
                 <p>Give your phone a new style</p>
             </div>
@@ -255,6 +256,51 @@
         // Call function when page loads
         window.onload = loadProductDetails;
     </script>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+    const addToCartButton = document.getElementById("add-to-cart");
+
+    if (addToCartButton) {
+        addToCartButton.addEventListener("click", function () {
+            // Gather product details
+            const product = {
+                id: "product1", // Unique product ID
+                name: document.querySelector(".product-name").innerText, // Get product name dynamically
+                price: parseFloat(document.querySelector(".product-price").innerText.replace("$", "")), // Get product price dynamically
+                image: document.querySelector(".product-image").src, // Get product image dynamically
+                quantity: 1, // Default quantity
+            };
+
+            // Retrieve cart from localStorage or initialize a new cart
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            // Check if the product already exists in the cart
+            const existingProductIndex = cart.findIndex(item => item.id === product.id);
+
+            if (existingProductIndex > -1) {
+                // If the product exists, increment its quantity
+                cart[existingProductIndex].quantity += 1;
+            } else {
+                // If the product does not exist, add it to the cart
+                cart.push(product);
+            }
+
+            // Save updated cart back to localStorage
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            // Notify user
+            alert(`${product.name} has been added to your cart!`);
+            });
+        } else {
+            console.error("Add to Cart button not found on the page.");
+        }
+    });
+    
+    </script>
+    
+    
+
+    
 
 
 
