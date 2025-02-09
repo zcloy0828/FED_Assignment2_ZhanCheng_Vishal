@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Checkout - Mocksell</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <div class="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="mockshell_logo_updated.png" alt="Mocksell Logo" width="150px">
+                    </a>
+                </div>                
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="product_handphone.html">Handphones</a></li>
+                        <li><a href="product_handphone.html">Laptops</a></li>
+                        <li><a href="product_handphone.html">Accessories</a></li>
+                        <li><a href="feedback.html">Feedback</a></li>
+                    </ul>
+                </nav>
+                <div class="user-menu">
+                    <ul class="icons">
+                        <li><a href="#"><img src="account_circle.png" alt="User" width="24px"></a></li>
+                        <li><a href="#"><img src="Heart.png" alt="Like" width="24px"></a></li>
+                        <li><a href="#"><img src="notifications.png" alt="Notification" width="24px"></a></li>
+                        <li><a href="chat.html"><img src="Message circle.png" alt="Chat" width="24px"></a></li>
+                        <li><a href="shopping_cart.html"><img src="Shopping cart.png" alt="Cart" width="24px"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Section -->
+    <div class="checkout-container">
+        <h2>Checkout</h2>
+
+        <div class="checkout-content">
+            <!-- Billing Information -->
+            <div class="billing-section">
+                <h3>Billing Details</h3>
+                <form id="checkout-form">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" required>
+
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+
+                    <label for="phone">Phone Number</label>
+                    <input type="text" id="phone" required>
+
+                    <label for="address">Shipping Address</label>
+                    <input type="text" id="address" required>
+
+                    <label for="payment-method">Payment Method</label>
+                    <select id="payment-method" required>
+                        <option value="credit-card">Credit Card</option>
+                        <option value="paypal">PayPal</option>
+                        <option value="bank-transfer">Bank Transfer</option>
+                    </select>
+
+                    <button type="submit" class="btn">Place Order</button>
+                </form>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="order-summary">
+                <h3>Order Summary</h3>
+                <table id="order-table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Qty</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Cart items will be loaded here -->
+                    </tbody>
+                </table>
+                <h3>Total: $<span id="total-price">0.00</span></h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="container">
+            <p class="copyright">Copyright 2025 - Mocksell</p>
+        </div>
+    </div>
+
+    <script>
+        // Load Cart Data into Order Summary
+        function loadOrderSummary() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let tableBody = document.querySelector("#order-table tbody");
+            let totalPrice = 0;
+
+            tableBody.innerHTML = "";
+
+            cart.forEach((item) => {
+                let row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${item.name}</td>
+                    <td>${item.quantity}</td>
+                    <td>$${item.price.toFixed(2)}</td>
+                    <td>$${(item.price * item.quantity).toFixed(2)}</td>
+                `;
+                tableBody.appendChild(row);
+                totalPrice += item.price * item.quantity;
+            });
+
+            document.getElementById("total-price").innerText = totalPrice.toFixed(2);
+        }
+
+        document.getElementById("checkout-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            alert("Order placed successfully!");
+            localStorage.removeItem("cart");
+            window.location.href = "index.html"; // Redirect to home page
+        });
+
+        loadOrderSummary();
+    </script>
+
+    <style>
+        .checkout-container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .checkout-content {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .billing-section, .order-summary {
+            width: 48%;
+            padding: 20px;
+            background: #f8f8f8;
+            border-radius: 5px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 10px;
+            border-collapse: collapse;
+        }
+
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            background: #ff523b;
+            color: white;
+            padding: 10px;
+            border: none;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #ff7553;
+        }
+    </style>
+
+</body>
+</html>
