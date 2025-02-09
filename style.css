@@ -446,7 +446,7 @@ ul{
 /*----all product page----*/
 
 .row-2{
-    margin: 100px auto 50px;
+    margin: 50px auto 50px;
     display: flex;
     justify-content: space-between;
 }
@@ -533,31 +533,6 @@ input:focus{
     cursor: pointer;
 }
 
-
-
-
-
-/*----midia query for less than 600px screen size----*/
-@media only screen and (max-width: 600px){
-    .row{
-        text-align: center;
-    }
-    .col-2, .col-3, .col-4{
-        flex-basis: 100%;
-    }
-    .single-product .row{
-        text-align: left;
-    }
-    .single-product .col-2{
-        padding: 20px 0;
-    }
-    .single-product h1{
-        font-size: 26px;
-        line-height: 30px;
-    }
-}
-
-
 /*--user profile shown above product*/
 .seller-info {
     display: flex;
@@ -594,6 +569,98 @@ input:focus{
 
 .col-4 h4 a:hover {
     color: #ff523b; /* Changes color on hover for better interaction */
+}
+
+
+
+
+/*---cart page*/
+.cart-page{
+    margin: 80px auto;
+}
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+.cart-info{
+    display: flex;
+    flex-wrap: wrap;
+}
+th{
+    text-align: left;
+    padding: 5px;
+    color: #fff;
+    background: #ff523b;
+    font-weight: normal;
+}
+td{
+    padding: 10px 0;
+}
+td input{
+    width: 40px;
+    height: 30px;
+    padding: 5px;
+}
+td a{
+    color: #ff523b;
+    font-size: 12px;
+}
+th:nth-child(2){
+    text-align: right;
+}
+td:nth-child(2){
+    text-align: right;
+}
+td:nth-child(3){
+    text-align: center;
+}
+td:nth-child(4){
+    text-align: center;
+}
+
+.total-price{
+    display: flex;
+    justify-content: flex-end;
+}
+.total-price table{
+    border-top: 3px solid #ff523b;
+    width: 100%;
+    max-width: 400px;
+}
+td:last-child{
+    font-weight: bold;
+}
+th:last-child{
+    font-weight: bold;
+}
+
+
+
+/*----midia query for less than 600px screen size----*/
+@media only screen and (max-width: 600px){
+    .row{
+        text-align: center;
+    }
+    .col-2, .col-3, .col-4{
+        flex-basis: 100%;
+    }
+    .single-product .row{
+        text-align: left;
+    }
+    .single-product .col-2{
+        padding: 20px 0;
+    }
+    .single-product h1{
+        font-size: 26px;
+        line-height: 30px;
+    }
+    .small-img-col{
+        flex-basis: 30%;
+    }
+    .cart-info p{
+        display: none;
+    }
+
 }
 
 
