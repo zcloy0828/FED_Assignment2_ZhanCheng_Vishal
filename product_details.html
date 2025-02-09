@@ -48,26 +48,32 @@
     <div class="small-container single-product">
         <div class="row">
             <div class="col-2">
-                <img id="productImg" src="" width="100%">
+                <img id="productImg" src="product.jpg" width="100%">
             </div>
-            <div class="col-2">
+            <div class="col-2" id="product-details" 
+                data-name="Product Name" 
+                data-price="19.99" 
+                data-image="product.jpg">
                 <h1 id="product-title">Product Name</h1>
-                <h4 id="product-price">$0.00</h4>
-                <select>
-                    <option>Select color</option>
-                    <option>Black</option>
-                    <option>Cyan</option>
-                    <option>Yellow</option>
-                    <option>White</option>
-                    <option>Pink</option>
+                <h4 id="product-price">$19.99</h4>
+                <select id="product-color">
+                    <option value="">Select color</option>
+                    <option value="Black">Black</option>
+                    <option value="Cyan">Cyan</option>
+                    <option value="Yellow">Yellow</option>
+                    <option value="White">White</option>
+                    <option value="Pink">Pink</option>
                 </select>
-                <input type="number" value="1">
+                <input type="number" id="product-quantity" value="1" min="1">
                 <button id="add-to-cart">Add to Cart</button>
                 <h3>Product Details <i class="fa fa-indent"></i></h3>
                 <p>Give your phone a new style</p>
             </div>
         </div>
     </div>
+
+        <script src="product_details.js"></script>
+
 
     <!----title-->
     <div class="small-container">
