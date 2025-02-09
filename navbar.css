@@ -1,0 +1,51 @@
+/* Shared Navbar Styles */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 50px;
+    background: radial-gradient(#fff, #c8d8e4); /* Common Background */
+}
+
+nav ul {
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+    gap: 25px;
+    flex: 1;
+}
+
+nav ul li a {
+    text-decoration: none;
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+}
+
+.user-menu {
+    display: flex;
+    align-items: center;
+}
+
+.user-menu .icons {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+}
+
+.user-menu .icons li a img {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.user-menu .icons li a img:hover {
+    transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

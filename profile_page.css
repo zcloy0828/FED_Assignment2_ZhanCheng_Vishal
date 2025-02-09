@@ -12,9 +12,12 @@ body {
 .container {
     display: flex;
     max-width: 1200px;
-    margin: 50px auto;
+    margin: auto;
     padding: 20px;
     gap: 20px;
+}
+.container h1{
+    display: none;
 }
 
 /* Sidebar Styling */
