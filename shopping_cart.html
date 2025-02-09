@@ -4,12 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All products - Mocksell</title>
+    <title>Shopping Cart - Mocksell</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/fontawesome.min.css">
-
 </head>
 <body>
 
@@ -42,7 +40,7 @@
         </div>
     </div>
 
-<!--cart items detials-->
+    <!-- Cart Items -->
     <div class="small-container cart-page">
         <table>
             <tr>
@@ -50,96 +48,54 @@
                 <th>Quantity</th>
                 <th>Subtotal</th>
             </tr>
-            <tr>
-                <td>
-                    <div class="cart-info">
-                        <img src="iphone_14_blue.jpg">
-                        <div>
-                            <p>iphone 14 blue</p>
-                            <small>Price: $990</small>
-                            <br>
-                            <a href="">Remove</a>
-                        </div>
-                    </div>
-                </td>
-                <td><input type="number" value="1"></td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="cart-info">
-                        <img src="iphone_14_blue.jpg">
-                        <div>
-                            <p>iphone 14 blue</p>
-                            <small>Price: $990</small>
-                            <br>
-                            <a href="">Remove</a>
-                        </div>
-                    </div>
-                </td>
-                <td><input type="number" value="1"></td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="cart-info">
-                        <img src="iphone_14_blue.jpg">
-                        <div>
-                            <p>iphone 14 blue</p>
-                            <small>Price: $990</small>
-                            <br>
-                            <a href="">Remove</a>
-                        </div>
-                    </div>
-                </td>
-                <td><input type="number" value="1"></td>
-            </tr>
+            <!-- Cart items will be dynamically inserted here -->
         </table>
 
         <div class="total-price">
             <table>
                 <tr>
                     <td>Subtotal</td>
-                    <td>$990</td>
+                    <td>$0</td>
                 </tr>
                 <tr>
                     <td>Tax</td>
-                    <td>$50</td>
+                    <td>$0</td>
                 </tr>
                 <tr>
                     <td>Total</td>
-                    <td>$1040</td>
+                    <td>$0</td>
                 </tr>
             </table>
         </div>
     </div>
 
-
-<!------footer-->
+    <!-- Footer -->
     <div class="footer">
         <div class="container">
             <div class="row">
                 <div class="footer-col-1">
-                    <h3> Download Our App</h3>
-                    <p>Download App for andriod and ios modile phone.</p>
+                    <h3>Download Our App</h3>
+                    <p>Download App for Android and iOS mobile phones.</p>
                     <div class="app-logo">
-                        <img src="image/playt-store.png">
+                        <img src="image/play-store.png">
                         <img src="image/app-store.png">
                     </div>
                 </div>
                 <div class="footer-col-2">
                     <img src="image/logo-white.png">
-                    <p>Our purpose is to sustainablt make the pleasure and benefits of electronic to the many.</p>
+                    <p>Our purpose is to sustainably make the pleasure and benefits of electronics accessible to many.</p>
                 </div>
                 <div class="footer-col-3">
-                    <h3> Useful links</h3>
+                    <h3>Useful Links</h3>
                     <ul>
                         <li>Coupons</li>
-                        <li> BLog post</li>
-                        <li>Return policy</li>
-                        <li> Join now</li>
+                        <li>Blog Post</li>
+                        <li>Return Policy</li>
+                        <li>Join Now</li>
                     </ul>
                 </div>
                 <div class="footer-col-4">
-                    <h3>Follow us</h3>
+                    <h3>Follow Us</h3>
                     <ul>
                         <li>IG</li>
                         <li>FB</li>
@@ -153,24 +109,18 @@
         </div>
     </div>
 
-<!----js for toggle menu-->
     <script>
         var MenuItems = document.getElementById("MenuItems");
-
         MenuItems.style.maxHeight = "0px";
 
         function menutoggle(){
-            if(MenuItems.style.maxHeight == "0px")
-            {
+            if(MenuItems.style.maxHeight == "0px") {
                 MenuItems.style.maxHeight = "200px";
-            }
-            else
-            {
+            } else {
                 MenuItems.style.maxHeight = "0px";
             }
         }
     </script>
-
 
 </body>
 </html>
